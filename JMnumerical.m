@@ -5,6 +5,11 @@ function [J,M]=JMnumerical(alp,bet,the,varargin)
 % $\beta$, and $\theta$. Additionally, the Absolute and Relative Error 
 % Tolerences can be specified as Name-Value pairs with the names 'AbsTol' 
 % and 'RelTol', respectively.
+
+% Authors: Abhishek Chatterjee, Guillaume James, and Bernard Brogliato
+% Address: Univ. Grenoble Alpes, INRIA, CNRS, Grenoble INP, LJK, Grenoble
+%          38000 France 
+
 Atol=1e-6; Rtol=1e-3;
 if ~isempty(varargin)
     for i=1:length(varargin)/2

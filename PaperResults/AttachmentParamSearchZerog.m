@@ -1,4 +1,7 @@
 function AttachmentParamSearchZerog()
+% Authors: Abhishek Chatterjee, Guillaume James, and Bernard Brogliato
+% Address: Univ. Grenoble Alpes, INRIA, CNRS, Grenoble INP, LJK, Grenoble
+%          38000 France 
 addpath ../
 
 alp1=1; alp2=5/4; alp3=3/2; alp4=5/2; bet=1:0.05:3;

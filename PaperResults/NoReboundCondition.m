@@ -1,4 +1,8 @@
 function NoReboundCondition(alp,bet,varargin)
+% Authors: Abhishek Chatterjee, Guillaume James, and Bernard Brogliato
+% Address: Univ. Grenoble Alpes, INRIA, CNRS, Grenoble INP, LJK, Grenoble
+%          38000 France 
+
 gam_min = 0.001;
 gam_max = 0.1;
 gam_max_z = 0.01;

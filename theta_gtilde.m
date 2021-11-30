@@ -2,6 +2,11 @@ function thc=theta_gtilde(alp,gtil)
 % theta_gtilde(alp,gtil) computes the value of $\theta$ for a corresponding
 % value $\tilde{g}$, given a $\alpha$ value. The inputs alp and gtil
 % represent the parameters $\alpha$ and $\tilde{g}$, respectively.
+
+% Authors: Abhishek Chatterjee, Guillaume James, and Bernard Brogliato
+% Address: Univ. Grenoble Alpes, INRIA, CNRS, Grenoble INP, LJK, Grenoble
+%          38000 France 
+
 max_iter=100;
 iter=0;
 

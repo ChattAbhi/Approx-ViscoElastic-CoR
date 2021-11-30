@@ -1,4 +1,8 @@
 function FirstOrderCompare(gam)
+% Authors: Abhishek Chatterjee, Guillaume James, and Bernard Brogliato
+% Address: Univ. Grenoble Alpes, INRIA, CNRS, Grenoble INP, LJK, Grenoble
+%          38000 France 
+
 alp =1.5; %alpha
 bet =1.5; %beta
 
@@ -13,7 +17,11 @@ num_steps=100;
 gtilde_range = linspace(gtilde_min,gtilde_max,num_steps);
 E_num=zeros(1,length(gtilde_range));
 E_anl=zeros(1,length(gtilde_range));
-[C0,C1,~]=ConstCORCoeffs(alp,bet);
+if bet==3/2
+    [C0,C1,~]=ConstCORCoeffs(alp,bet);
+else
+    [C0,C1]=ConstCORCoeffs(alp,bet);
+end
 for i=1:length(gtilde_range)
     E_num(i)=numericCOR(alp,bet,gam,gtilde_range(i));
     E_anl(i)=1 - gam*C0 - gam*gtilde_range(i)*C1;

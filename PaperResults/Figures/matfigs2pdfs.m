@@ -1,53 +1,20 @@
-clear all; close all; clc; 
+% A simple way to use this is to first open this file in the matlab editor,
+% then navigate to the folder where .fig files are stored, and make that
+% current folder. Then select the code below in the matlab editor ->
+% right-click the selected code -> Click "Evaluate Selection".
 
-cd matfig
-redo = true; updatelist = true;
-list=[];
-while redo
-    if updatelist
-        contents=dir;
-        contents=contents(find([contents.bytes]>0));
-        nl=length(list);
-        for i=1:length(contents)
-            list(nl+i).name=contents(i).name;
-            list(nl+i).path=contents(i).folder;
-            list(nl+i).isfold=contents(i).isdir;
-        end
-        updatelist=false;
-    end
-    
-    
-    rm_ind=[];
-    for i=length(list):-1:1
-        if ~list(i).isfold
-            np=split(list(i).name,'.');
-            pp=split(list(i).path,'matfig');
-            if strcmp(np{2},'fig')
-                open(list(i).name);
-                fname=strcat(pp{1},'pdf',pp{2},'/',np{1},'.pdf');
-                print(fname,'-dpdf');
-                close;
-                
-            end
-            rm_ind=[rm_ind,i];
-            k=length(contents);
-            while k>0
-                if strcmp(contents(k).name,list(i).name) && strcmp(contents(k).folder,list(i).path)
-                    contents(k)=[]; 
-                    k=length(contents);
-                else
-                    k=k-1;
-                end
-            end
+clear all; close all; clc;
+contents=dir; 
+for i=1:length(contents)
+    if contents(i).bytes>0 && ~contents(i).isdir
+        fname=contents(i).name;
+        spl_fname=split(contents(i).name,'.');
+        nam = spl_fname{1};
+        ext = spl_fname{2};
+        if strcmp(ext,'fig')
+            fig=openfig(fname);
+            print(fig,strcat(nam,'.pdf'),'-dpdf');
+            close(fig);
         end
     end
-    list(rm_ind)=[];
-    
-    if isempty(contents)
-        cd ..
-    else
-        cd 
-    end
-    
-    
 end

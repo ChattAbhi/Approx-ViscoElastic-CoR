@@ -1,4 +1,9 @@
 function ShowGamGtil
+
+% Authors: Abhishek Chatterjee, Guillaume James, and Bernard Brogliato
+% Address: Univ. Grenoble Alpes, INRIA, CNRS, Grenoble INP, LJK, Grenoble
+%          38000 France 
+
 %v0=0:0.0001:0.1;
 v0=0:0.0001:1;
 alp=3/2; bet=3/2;

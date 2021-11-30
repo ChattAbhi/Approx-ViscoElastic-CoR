@@ -1,4 +1,7 @@
 function Compare_Integ_Approx
+% Authors: Abhishek Chatterjee, Guillaume James, and Bernard Brogliato
+% Address: Univ. Grenoble Alpes, INRIA, CNRS, Grenoble INP, LJK, Grenoble
+%          38000 France 
 prefixA='Figures/matfig/Components/integrand/'; prefixB='Figures/pdf/Components/integrand/';
 the=[0,0.4,0.7,1];
 alp=3/2;

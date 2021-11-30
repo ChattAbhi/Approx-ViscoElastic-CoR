@@ -1,4 +1,9 @@
 function PlotCritGamma()
+
+% Authors: Abhishek Chatterjee, Guillaume James, and Bernard Brogliato
+% Address: Univ. Grenoble Alpes, INRIA, CNRS, Grenoble INP, LJK, Grenoble
+%          38000 France 
+
 addpath ../
 %{
 alp=1; bet=1:0.01:1.5;

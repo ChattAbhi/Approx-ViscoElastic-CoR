@@ -7,6 +7,11 @@ function [I,Q]=VarCORCoeffsNumeric(alp,bet,gtil,varargin)
 % Tolerences and Maximum Iterations for the numerical algorithm, as
 % Name-Value pairs, with the names 'AbsTol', 'RelTol', and 'MaxIter',
 % respectively.
+
+% Authors: Abhishek Chatterjee, Guillaume James, and Bernard Brogliato
+% Address: Univ. Grenoble Alpes, INRIA, CNRS, Grenoble INP, LJK, Grenoble
+%          38000 France 
+
 y0=[0;0];
 max_iter=100; uin=0; ufin=1; Atol=1e-8; Rtol=1e-7; Ustore=[]; Ystore=[];  
 if ~isempty(varargin)

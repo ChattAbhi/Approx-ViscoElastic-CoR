@@ -1,4 +1,7 @@
 function ConstCoeffFormCompare
+% Authors: Abhishek Chatterjee, Guillaume James, and Bernard Brogliato
+% Address: Univ. Grenoble Alpes, INRIA, CNRS, Grenoble INP, LJK, Grenoble
+%          38000 France 
 %% Compare O(gamma) with O(gamma^2) using Schwager-Poschel
 alp=3/2; bet=3/2;
 % Get results for specific gtilde values 
@@ -13,7 +16,12 @@ end
 prefixA='Figures/matfig/OrderComp/'; prefixB='Figures/pdf/OrderComp/';
 num_step=1000;
 gam_lim=0.1; 
-[C0,C1,C2]=ConstCORCoeffs(alp,bet);
+if bet==3/2
+    [C0,C1,C2]=ConstCORCoeffs(alp,bet);
+else
+    C2=0; % Order 2 constant coefficient is not known when bet~=3/2.
+    [C0,C1]=ConstCORCoeffs(alp,bet);
+end
 for i=1:length(gtil_choice)
     E=zeros(3,num_step); Ez=zeros(3,num_step);
     R=zeros(2,num_step); Rz=zeros(2,num_step);

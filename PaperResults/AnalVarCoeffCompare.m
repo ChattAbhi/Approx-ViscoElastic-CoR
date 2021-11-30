@@ -1,4 +1,7 @@
 function AnalVarCoeffCompare(choice) 
+% Authors: Abhishek Chatterjee, Guillaume James, and Bernard Brogliato
+% Address: Univ. Grenoble Alpes, INRIA, CNRS, Grenoble INP, LJK, Grenoble
+%          38000 France 
 %% Compare O(gamma^2) between Schwager-Poschel, numerical and analytical coeffeicients
 alp=3/2;
 if choice==1
@@ -34,10 +37,15 @@ end
 
 num_step=1000;
 gam_lim=0.1; 
-[C0,C1,C2]=ConstCORCoeffs(alp,bet);
+if bet==3/2
+    [C0,C1,C2]=ConstCORCoeffs(alp,bet);
+else
+    C2=0; % Order 2 constant coefficient is not known when bet~=3/2
+    [C0,C1]=ConstCORCoeffs(alp,bet);
+end
 
 LowGamErr=[]; LowGamRng=[]; MidGamErr=[]; MidGamRng=[]; HighGamErr=[]; HighGamRng=[];
-parts=[0.2,0.8];
+parts=[0.2,0.92];
 
 tabletext={}; prec=3;
 if bet==3/2
@@ -87,19 +95,28 @@ for i=1:length(gtil_choice)
         else
             E(2,j) = 0; % No analytical solution for other cases; 
         end
-        if gam_range(j)>gam_cn
-            esqrn=1 - 2*bet*In*gam_range(j) + 2*(bet^2)*In*Qn*(gam_range(j)^2);
-            E(3,j)=sqrt(esqrn); %O(gamma^2) COR, as \sqrt(e^2), with numerical I(gtilde) and Q(gtilde)
-        else
-            E(3,j)=1 - bet*In*gam_range(j) + (bet^2)*In*(Qn - (1/2)*In)*(gam_range(j)^2);
-        end
         
-        if gam_range(j)>gam_ca
-            esqra=1 - 2*bet*Ia*gam_range(j) + 2*(bet^2)*Ia*Qa*(gam_range(j)^2);
-            E(4,j)=sqrt(esqra); %O(gamma^2) COR, as \sqrt(e^2), with analytical I(gtilde) and Q(gtilde)
-        else
-            E(4,j)=1 - bet*Ia*gam_range(j) + (bet^2)*Ia*(Qa - (1/2)*Ia)*(gam_range(j)^2);
-        end
+        esqrn=1 - 2*bet*In*gam_range(j) + 2*(bet^2)*In*Qn*(gam_range(j)^2);
+        elinn=1 - bet*In*gam_range(j) + (bet^2)*In*(Qn - (1/2)*In)*(gam_range(j)^2); 
+        E(3,j) = min([sqrt(max([0,esqrn])), max([elinn,0])]);
+        
+%         if gam_range(j)>gam_cn
+%             esqrn=1 - 2*bet*In*gam_range(j) + 2*(bet^2)*In*Qn*(gam_range(j)^2);
+%             E(3,j)=sqrt(max([0,esqrn])); %O(gamma^2) COR, as \sqrt(e^2), with numerical I(gtilde) and Q(gtilde)
+%         else
+%             E(3,j)=1 - bet*In*gam_range(j) + (bet^2)*In*(Qn - (1/2)*In)*(gam_range(j)^2);
+%         end
+        
+        esqra=1 - 2*bet*Ia*gam_range(j) + 2*(bet^2)*Ia*Qa*(gam_range(j)^2);
+        elina=1 - bet*Ia*gam_range(j) + (bet^2)*Ia*(Qa - (1/2)*Ia)*(gam_range(j)^2);
+        E(4,j) = min([ sqrt(max([0,esqra])), max([elina,0])]);
+
+%         if gam_range(j)>gam_ca
+%             esqra=1 - 2*bet*Ia*gam_range(j) + 2*(bet^2)*Ia*Qa*(gam_range(j)^2);
+%             E(4,j)=sqrt(max([0,esqra])); %O(gamma^2) COR, as \sqrt(e^2), with analytical I(gtilde) and Q(gtilde)
+%         else
+%             E(4,j)=1 - bet*Ia*gam_range(j) + (bet^2)*Ia*(Qa - (1/2)*Ia)*(gam_range(j)^2);
+%         end
         
         
         if choice==5 || choice==6
@@ -132,20 +149,28 @@ for i=1:length(gtil_choice)
         else
             Ez(2,j) = 0; % No analytical solution for other cases; 
         end
-        if gam_range_z(j)>gam_cn
-            esqrn=1 - 2*bet*In*gam_range_z(j) + 2*(bet^2)*In*Qn*(gam_range_z(j)^2);
-            Ez(3,j)=sqrt(esqrn); %O(gamma^2) COR, as \sqrt(e^2), with numerical I(gtilde) and Q(gtilde)
-        else
-            Ez(3,j)=1 - bet*In*gam_range_z(j) + (bet^2)*In*(Qn - (1/2)*In)*(gam_range_z(j)^2);
-        end
         
-        if gam_range_z(j)>gam_ca
-            esqra=1 - 2*bet*Ia*gam_range_z(j) + 2*(bet^2)*Ia*Qa*(gam_range_z(j)^2);
-            Ez(4,j)=sqrt(esqra); %O(gamma^2) COR, as \sqrt(e^2), with analytical I(gtilde) and Q(gtilde)
-        else
-            Ez(4,j)=1 - bet*Ia*gam_range_z(j) + (bet^2)*Ia*(Qa - (1/2)*Ia)*(gam_range_z(j)^2);
-        end
+        esqrn=1 - 2*bet*In*gam_range_z(j) + 2*(bet^2)*In*Qn*(gam_range_z(j)^2);
+        elinn=1 - bet*In*gam_range_z(j) + (bet^2)*In*(Qn - (1/2)*In)*(gam_range_z(j)^2);
+        Ez(3,j) = min([sqrt(max([0,esqrn])), max([elinn,0])]);
         
+%         if gam_range_z(j)>gam_cn
+%             esqrn=1 - 2*bet*In*gam_range_z(j) + 2*(bet^2)*In*Qn*(gam_range_z(j)^2);
+%             Ez(3,j)=sqrt(max([0,esqrn])); %O(gamma^2) COR, as \sqrt(e^2), with numerical I(gtilde) and Q(gtilde)
+%         else
+%             Ez(3,j)=1 - bet*In*gam_range_z(j) + (bet^2)*In*(Qn - (1/2)*In)*(gam_range_z(j)^2);
+%         end
+        esqra=1 - 2*bet*Ia*gam_range_z(j) + 2*(bet^2)*Ia*Qa*(gam_range_z(j)^2);
+        elina=1 - bet*Ia*gam_range_z(j) + (bet^2)*Ia*(Qa - (1/2)*Ia)*(gam_range_z(j)^2);
+        Ez(4,j) = min([ sqrt(max([0,esqra])), max([elina,0])]);
+        
+%         if gam_range_z(j)>gam_ca
+%             esqra=1 - 2*bet*Ia*gam_range_z(j) + 2*(bet^2)*Ia*Qa*(gam_range_z(j)^2);
+%             Ez(4,j)=sqrt(max([0,esqra])); %O(gamma^2) COR, as \sqrt(e^2), with analytical I(gtilde) and Q(gtilde)
+%         else
+%             Ez(4,j)=1 - bet*Ia*gam_range_z(j) + (bet^2)*Ia*(Qa - (1/2)*Ia)*(gam_range_z(j)^2);
+%         end
+
         
         if choice==5 || choice==6
             Az(1,j)= abs(Ez(1,j) - Ez(2,j)); %O(gamma^2) COR of direct numerical, w.r.t. exact solution for the cases: 1. alp=bet=1, and 2. alp=3/2 & bet=5/4 

@@ -4,6 +4,10 @@
 % can be run independently in the matlab editor by selecting a particular
 % section and then clicking Run Section in matlab editor.
 
+% Authors: Abhishek Chatterjee, Guillaume James, and Bernard Brogliato
+% Address: Univ. Grenoble Alpes, INRIA, CNRS, Grenoble INP, LJK, Grenoble
+%          38000 France 
+
 error('Comment the error line to run all! Note this will overwrite previous results!')
 
 clear all; close all; clc;
@@ -16,7 +20,7 @@ clear all; close all; clc;
 
 %% Generate Figures to show the evolution of displacement, speed, and COR (Needs Manual Modification)
 addpath ../
-numericCOR(3/2,3/2,0.006,0.1,'ShowPlots',true,'figsave','Figures/matfig/NumIntResults/numeric1.fig',...
+numericCOR(3/2,1,0.1,0.1,'ShowPlots',true,'figsave','Figures/matfig/NumIntResults/numeric1.fig',...
     'pdfsave','Figures/pdf/NumIntResults/numeric1.pdf')
 
 numericCOR(3/2,3/2,0.06,4,'ShowPlots',true,'figsave','Figures/matfig/NumIntResults/numeric2.fig',...
@@ -92,3 +96,13 @@ AnalVarCoeffCompare(5)
 AnalVarCoeffCompare(6)
 rmpath ../
 clear all; close all; 
+
+%% Check the threshold criteria
+addpath ../
+
+CheckAnalVarCoeffCompare(1)
+CheckAnalVarCoeffCompare(2)
+CheckAnalVarCoeffCompare(3)
+CheckAnalVarCoeffCompare(4)
+rmpath ../
+

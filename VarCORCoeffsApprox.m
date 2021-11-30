@@ -4,6 +4,10 @@ function varargout=VarCORCoeffsApprox(alp,bet,the)
 % when provided with the parameter values of alp, bet, and the, which 
 % represent the parameters $\alpha$, $\beta$, and $\theta$, respectively.
 
+% Authors: Abhishek Chatterjee, Guillaume James, and Bernard Brogliato
+% Address: Univ. Grenoble Alpes, INRIA, CNRS, Grenoble INP, LJK, Grenoble
+%          38000 France 
+
 [K,L]=computeKL(alp,bet,the);
 J=Japprox(alp,bet,the);
 M=Mapprox(alp,bet,the);
