@@ -110,7 +110,7 @@ gam_c = gamma_c(alp,bet,gtil)
 ```
 Hence, `gam_c` may be used to determine whether or not the spherical object will rebound after the impact. See references [1,2] for details.
 
-The simulation results in references [1,2] were generated using the files in the folder `PaperResults`. The file `PaperResults/GenFigs.m` can be used to generate plots of all simulation results in [1,2]. If the user finds this toolbox useful, the authors would appreciate a citation to [1,2].
+The simulation results in references [1,2] were generated using the files in the folder `PaperResults`. The file `PaperResults/GenFigs.m` can be used to generate plots of all simulation results in [1,2], which are then stored in various sub-folder within `PaperResults/Figures`. If the user finds this toolbox useful, the authors would appreciate a citation to [1,2].
 
 ## References 
 * [1] Chatterjee, A., James, G., Brogliato, B., "Approximate coefficient of restitution for nonlinear viscoelastic contact with external load" (Under Review). Granular Matter. Preprint: https://hal.inria.fr/hal-03463883
